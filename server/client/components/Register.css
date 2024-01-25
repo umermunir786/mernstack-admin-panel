@@ -1,0 +1,18 @@
+
+  
+    .section-registration {
+      & .container {
+        & .reg-img img {
+          width: 50%;
+          height: auto;
+        }
+      }
+  
+      & .registration-form {
+        & input {
+          width: 100%;
+          padding: 0.6rem 0.6rem;
+        }
+      }
+    }
+  

@@ -1,0 +1,27 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+    gap: 20px; /* Adjust the gap between items as needed */
+  }
+  
+  .main-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+  
+  .price-col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 30px 10px 30px;
+  }
+  
+  /* Add additional styles as needed */
+  
