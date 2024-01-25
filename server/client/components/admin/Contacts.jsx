@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 function Contacts() {
   const [contacts, setContacts] = useState([])
+  const [update, setUpdate] = useState(false)
   const _get=async()=>{
     let headersList = {
       "Content-Type": "application/json",
@@ -17,11 +18,30 @@ function Contacts() {
      console.log("data contacts",data);
      setContacts(data)
   }
+  const _DelContactById=async(id)=>{
+    let headersList = {
+      "Accept": "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+     }
+     
+     let response = await fetch(`http://localhost:5000/api/admin/contact/delete/${id}`, { 
+       method: "DELETE",
+       headers: headersList
+     }).then(res=>res.json())
+     .then((data)=>{
+      console.log(data)
+      setUpdate(!update)
+    }).catch((err)=>{console.log(err)})
+     
+     let data = await response.json();
+     console.log(data);
+
+
+     
+  }
     useEffect(() => {
      _get()
-       
-    
-    }, [])
+       }, [update])
   return (
     <section>
     <div>
@@ -50,7 +70,7 @@ function Contacts() {
   <td>{_id}</td>
   <td>{message}</td>
   {/* <td><button >update</button></td> */}
-  <td><button >delete</button></td>
+  <td><button onClick={()=>{_DelContactById(_id)}} >delete</button></td>
   
 </tr>
         )})

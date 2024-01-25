@@ -65,6 +65,28 @@ try {
             }
             }
 
+            const DeleteContactById =async(req,res)=>{
+                try {
+                 const id=req.params.id
+                    await cont.deleteOne({_id:id})
+                   
+             res.status(200).json({msg:id +` deleted successfully`}) 
+                } catch (error) {
+                    res.status(401).json(error)
+                }
+                }
+                
+            const DeleteServicesById =async(req,res)=>{
+                try {
+                 const id=req.params.id
+                    await service.deleteOne({_id:id})
+                   
+             res.status(200).json({msg:id +` deleted successfully`}) 
+                } catch (error) {
+                    res.status(401).json(error)
+                }
+                }
+
             const UpdateUserById =async(req,res)=>{
                 try {
                  const id=req.params.id
@@ -94,4 +116,4 @@ try {
 
 
 
-        module.exports={Users,Contacts,Services,DeleteUserById,UpdateUserById,GetUserById,GetServicesById,UpdateServicesById}
+        module.exports={Users,Contacts,Services,DeleteUserById,UpdateUserById,GetUserById,GetServicesById,UpdateServicesById,DeleteContactById,DeleteServicesById}

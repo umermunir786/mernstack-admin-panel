@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Services() {
   const [services, setServices] = useState([]);
-
+  const [update, setUpdate] = useState(false)
   const _get = async () => {
     let headersList = {
       "Content-Type": "application/json",
@@ -19,9 +19,31 @@ function Services() {
     setServices(data);
   };
 
+  const _DelServicesById=async(id)=>{
+    let headersList = {
+      "Accept": "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+     }
+     
+     let response = await fetch(`http://localhost:5000/api/admin/services/delete/${id}`, { 
+       method: "DELETE",
+       headers: headersList
+     }).then(res=>res.json())
+     .then((data)=>{
+      console.log(data)
+      setUpdate(!update)
+    }).catch((err)=>{console.log(err)})
+     
+     let data = await response.json();
+     console.log(data);
+
+
+     
+  }
+
   useEffect(() => {
     _get();
-  }, []);
+  }, [update]);
 
   return (
     <section>
@@ -53,7 +75,7 @@ function Services() {
                     <Link to={`/admin/services/${_id}`}>edit</Link>
                   </td>
                   <td>
-                    <button>Delete</button>
+                    <button onClick={()=>{_DelServicesById(_id)}}>Delete</button>
                   </td>
                 </tr>
               );
